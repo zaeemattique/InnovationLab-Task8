@@ -24,7 +24,7 @@ The infrastructure consists of:
 - **EFS File System** with mount points in each AZ
 - **CodePipeline** automating build and deployment from GitHub
 
-  ![alt](https://raw.githubusercontent.com/zaeemattique/InnovationLab-Task7/refs/heads/main/Task7%20Architecture.drawio.png)
+  ![alt](https://raw.githubusercontent.com/zaeemattique/InnovationLab-Task8/refs/heads/main/Task8%20Architecture.drawio.png)
 
 ##  Getting Started
 
@@ -59,9 +59,9 @@ Create a VPC with the following configuration:
 Set up Amazon EFS for persistent storage:
 
 ```
-File System Name: Task7-EFS-Zaeem
+File System Name: Task8-EFS-Zaeem
 Encryption: Enabled
-Access Point: Task7-EFS-AP-Zaeem
+Access Point: Task8-EFS-AP-Zaeem
   - Root Directory: /
   - POSIX UID/GID: 1000
   - Owner UID/GID: 1000
@@ -78,10 +78,10 @@ Build and push your Docker image to ECR:
 docker image -t nodejs:latest -f DockerFile.yaml .
 
 # Tag for ECR
-docker tag nodejs:latest <ecr-uri>/zaeem/task7:latest
+docker tag nodejs:latest <ecr-uri>/zaeem/Task8:latest
 
 # Push to ECR
-docker push <ecr-uri>/zaeem/task7:latest
+docker push <ecr-uri>/zaeem/Task8:latest
 ```
 
 #### 4. ECS Cluster Setup
@@ -130,15 +130,15 @@ Configure AWS CodePipeline with three stages:
   ```
   REGION=us-west-2
   ACCOUNT_ID=504649076991
-  REPO_NAME=zaeem/task7
+  REPO_NAME=zaeem/Task8
   IMAGE_TAG=latest
   ```
 - Buildspec: `buildspec.yml` in repository root
 
 **Deploy Stage**:
 - Provider: Amazon ECS
-- Cluster: Task7-ECS-Cluster-Zaeem
-- Service: Task7-NodeJS-Zaeem-Service
+- Cluster: Task8-ECS-Cluster-Zaeem
+- Service: Task8-NodeJS-Zaeem-Service
 - Timeout: 15 minutes
 
 #### 6. Testing & Verification
@@ -178,12 +178,12 @@ Configure AWS CodePipeline with three stages:
 
 ##  Resource Naming Convention
 
-All resources follow the naming pattern: `Task7-<ResourceType>-Zaeem`
+All resources follow the naming pattern: `Task8-<ResourceType>-Zaeem`
 
 Examples:
-- VPC: `Task7-VPC-Zaeem`
-- ECS Cluster: `Task7-ECS-Cluster-Zaeem`
-- Pipeline: `Task7-Pipeline-Zaeem`
+- VPC: `Task8-VPC-Zaeem`
+- ECS Cluster: `Task8-ECS-Cluster-Zaeem`
+- Pipeline: `Task8-Pipeline-Zaeem`
 
 ##  License
 
